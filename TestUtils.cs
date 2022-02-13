@@ -31,17 +31,16 @@ namespace TestProject1
             }
         }
 
-        internal static void Populate<T>(this Queue<T> queue, T[] elements)
+        internal static Queue<T> Populate<T>(T[] elements)
         {
-            if (queue == null)
-            {
-                queue = new Queue<T>();
-            }
+            Queue<T> result = new Queue<T>();
 
             for (int i = 0; i < elements.Length; i++)
             {
-                queue.Enqueue(elements[i]);
+                result.Enqueue(elements[i]);
             }
+
+            return result;
         }
 
         internal static void InitializeQueueCollection<T>(this Queue<T>[] collection, int lenght)
@@ -59,7 +58,7 @@ namespace TestProject1
 
         internal static bool HasSameElementsAtIndeces<T>(this Queue<T> sourceCollection, Queue<T> targetCollection)
         {
-            bool result = sourceCollection.Count == targetCollection.Count;
+            bool result = sourceCollection?.Count == targetCollection?.Count;
 
             if (result)
             {

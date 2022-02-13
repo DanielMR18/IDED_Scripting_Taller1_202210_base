@@ -4,8 +4,8 @@
     {
         internal enum ERequestType
         {
-            Subscription,
             Payment,
+            Subscription,
             Cancellation
         }
 
@@ -13,7 +13,7 @@
 
         public int Turn { get; private set; }
 
-        public Ticket(ERequestType requestType, int turn) 
+        public Ticket(ERequestType requestType, int turn)
         {
             RequestType = requestType;
             Turn = turn;

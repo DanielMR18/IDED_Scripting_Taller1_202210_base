@@ -129,7 +129,7 @@ namespace TestProject1
             new Ticket(ERequestType.Cancellation, 50),
             new Ticket(ERequestType.Subscription, 99),
             new Ticket(ERequestType.Payment, 31),
-            new Ticket(ERequestType.Subscription, 30),
+            new Ticket(ERequestType.Subscription, 80),
             new Ticket(ERequestType.Payment, 80),
             new Ticket(ERequestType.Cancellation, 1),
             new Ticket(ERequestType.Subscription, 30),
@@ -182,22 +182,22 @@ namespace TestProject1
 
         private void ClearNGVStacks()
         {
-            testStackA.Clear();
-            testStackB.Clear();
+            testStackA?.Clear();
+            testStackB?.Clear();
         }
 
         private void ClearQueues()
         {
-            resultPaymentQueue.Clear();
-            resultSubscriptionQueue.Clear();
-            resultCancellationQueue.Clear();
+            resultPaymentQueue?.Clear();
+            resultSubscriptionQueue?.Clear();
+            resultCancellationQueue?.Clear();
         }
 
         private void ClearDictionaries()
         {
-            testDict1.Clear();
-            testDict2.Clear();
-            testDict3.Clear();
+            testDict1?.Clear();
+            testDict2?.Clear();
+            testDict3?.Clear();
         }
 
         private void PopulateTestNGVStacks()
@@ -209,11 +209,12 @@ namespace TestProject1
             testSortedStackResult.Populate(testSortedStackResultElements);
         }
 
-        private void PopulateTicketCollections()
+        [SetUp]
+        public void PopulateTicketCollections()
         {
-            resultPaymentQueue.Populate(resultPaymentTicketElements);
-            resultSubscriptionQueue.Populate(resultSubscriptionTicketElements);
-            resultCancellationQueue.Populate(resultCancellationTicketElements);
+            resultPaymentQueue = TestUtils.Populate(resultPaymentTicketElements);
+            resultSubscriptionQueue = TestUtils.Populate(resultSubscriptionTicketElements);
+            resultCancellationQueue = TestUtils.Populate(resultCancellationTicketElements);
         }
 
         [TearDown]
@@ -310,7 +311,7 @@ namespace TestProject1
         [Test]
         public void TestClassifyTickets()
         {
-            PopulateTicketCollections();
+            //PopulateTicketCollections();
 
             Queue<Ticket>[] resultQueues = { resultPaymentQueue, resultSubscriptionQueue, resultCancellationQueue };
 

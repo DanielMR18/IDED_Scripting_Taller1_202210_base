@@ -41,16 +41,79 @@ namespace TestProject1
 
         internal static Queue<Ticket>[] ClassifyTickets(List<Ticket> sourceList)
         {
-            Queue<Ticket>[] result = null;
+            Queue<Ticket>[] result = { new Queue<Ticket>(), new Queue<Ticket>(), new Queue<Ticket>() };
+            List<Ticket> paymentElements = new List<Ticket>();
+            List<Ticket> subsElements = new List<Ticket>();
+            List<Ticket> cancelElements = new List<Ticket>();
+
+            for (int i = 0; i < sourceList.Count; i++)
+            {
+                switch (sourceList[i].RequestType)
+                {
+                    case Ticket.ERequestType.Payment:
+                        paymentElements.Add(sourceList[i]);
+                        break;
+
+                    case Ticket.ERequestType.Subscription:
+                        subsElements.Add(sourceList[i]);
+                        break;
+
+                    case Ticket.ERequestType.Cancellation:
+                        cancelElements.Add(sourceList[i]);
+                        break;
+                }
+            }
+
+            SortElements(paymentElements);
+            EnqueueElements(paymentElements, result[0]);
+            SortElements(subsElements);
+            EnqueueElements(subsElements, result[1]);
+            SortElements(cancelElements);
+            EnqueueElements(cancelElements, result[2]);
 
             return result;
+        }
+
+        private static void SortElements(List<Ticket> sourceList)
+        {
+            int n = sourceList.Count;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (sourceList[j].Turn > sourceList[j + 1].Turn)
+                    {
+                        // swap temp and arr[i]
+                        Ticket temp = sourceList[j];
+                        sourceList[j] = sourceList[j + 1];
+                        sourceList[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        private static void EnqueueElements(List<Ticket> sourceList, Queue<Ticket> targetQueue)
+        {
+            foreach (var item in sourceList)
+            {
+                targetQueue.Enqueue(item);
+            }
         }
 
         internal static bool AddNewTicket(Queue<Ticket> targetQueue, Ticket ticket)
         {
             bool result = true;
+            Ticket currentTicket = targetQueue.Peek();
+
+            result = ticket.Turn <= 99 && currentTicket.RequestType.Equals(ticket.RequestType);
+
+            if (result)
+            {
+                targetQueue.Enqueue(ticket);
+            }
 
             return result;
-        }        
+        }
     }
 }

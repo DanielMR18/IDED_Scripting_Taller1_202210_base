@@ -23,6 +23,37 @@ namespace TestProject1
         internal static Dictionary<int, EValueType> FillDictionaryFromSource(int[] sourceArr)
         {
             Dictionary<int, EValueType> result = new Dictionary<int, EValueType>();
+            int currentItem = -1;
+
+            for (int i = 0; i < sourceArr.Length; i++)
+            {
+                currentItem = sourceArr[i];
+                result.Add(currentItem, GetValueTypeFromNum(currentItem));
+            }
+
+            return result;
+        }
+
+        private static EValueType GetValueTypeFromNum(int currentItem)
+        {
+            EValueType result = EValueType.Prime;
+
+            if (currentItem % 2 == 0)
+            {
+                result = EValueType.Two;
+            }
+            else if (currentItem % 3 == 0)
+            {
+                result = EValueType.Three;
+            }
+            else if (currentItem % 5 == 0)
+            {
+                result = EValueType.Five;
+            }
+            else if (currentItem % 7 == 0)
+            {
+                result = EValueType.Prime;
+            }
 
             return result;
         }
@@ -84,7 +115,6 @@ namespace TestProject1
                 {
                     if (sourceList[j].Turn > sourceList[j + 1].Turn)
                     {
-                        // swap temp and arr[i]
                         Ticket temp = sourceList[j];
                         sourceList[j] = sourceList[j + 1];
                         sourceList[j + 1] = temp;

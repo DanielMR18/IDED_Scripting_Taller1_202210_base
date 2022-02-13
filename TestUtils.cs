@@ -75,5 +75,45 @@ namespace TestProject1
 
             return result;
         }
+
+        internal static bool HasSameElementsAtIndeces<T1, T2>(this IDictionary<T1, T2> sourceDict, IDictionary<T1, T2> targetDict)
+        {
+            bool result = sourceDict.Count == targetDict.Count;
+
+            if (result)
+            {
+                for (int i = 0; i < sourceDict.Count; i++)
+                {
+                    result = sourceDict.ElementAt(i).Equals(targetDict.ElementAt(i));
+
+                    if (!result)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        internal static bool HasSameElementsAtIndeces<T>(this Stack<T> sourceStack, Stack<T> targetStack)
+        {
+            bool result = sourceStack.Count == targetStack.Count;
+
+            if (result)
+            {
+                for (int i = 0; i < sourceStack.Count; i++)
+                {
+                    result = sourceStack.ElementAt(i).Equals(targetStack.ElementAt(i));
+
+                    if (!result)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return result;s
+        }
     }
 }

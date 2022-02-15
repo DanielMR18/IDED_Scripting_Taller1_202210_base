@@ -52,7 +52,7 @@ namespace TestProject1
             }
             else if (currentItem % 7 == 0)
             {
-                result = EValueType.Prime;
+                result = EValueType.Seven;
             }
 
             return result;
@@ -60,12 +60,39 @@ namespace TestProject1
 
         internal static int CountDictionaryRegistriesWithValueType(Dictionary<int, EValueType> sourceDict, EValueType type)
         {
-            return 0;
+            int result = 0;
+
+            foreach (var item in sourceDict)
+            {
+                if (item.Value.Equals(type))
+                {
+                    result++;
+                }
+            }
+
+            return result;
         }
 
         internal static Dictionary<int, EValueType> SortDictionaryRegistries(Dictionary<int, EValueType> sourceDict)
         {
             Dictionary<int, EValueType> result = new Dictionary<int, EValueType>();
+
+            if (sourceDict.Count > 0)
+            {
+                List<KeyValuePair<int, EValueType>> dictEntries = new List<KeyValuePair<int, EValueType>>();
+
+                foreach (var item in sourceDict)
+                {
+                    dictEntries.Add(new KeyValuePair<int, EValueType>(item.Key, item.Value));
+                }
+
+                SortElements(dictEntries);
+
+                foreach (var entry in dictEntries)
+                {
+                    result.TryAdd(entry.Key, entry.Value);
+                }
+            }
 
             return result;
         }
@@ -116,6 +143,24 @@ namespace TestProject1
                     if (sourceList[j].Turn > sourceList[j + 1].Turn)
                     {
                         Ticket temp = sourceList[j];
+                        sourceList[j] = sourceList[j + 1];
+                        sourceList[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        private static void SortElements(List<KeyValuePair<int, EValueType>> sourceList)
+        {
+            int n = sourceList.Count;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (sourceList[j].Key < sourceList[j + 1].Key)
+                    {
+                        KeyValuePair<int, EValueType> temp = sourceList[j];
                         sourceList[j] = sourceList[j + 1];
                         sourceList[j + 1] = temp;
                     }

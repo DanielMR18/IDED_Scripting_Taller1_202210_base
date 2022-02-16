@@ -261,7 +261,7 @@ namespace TestProject1
 
             Assert.AreEqual(CountDictionaryRegistriesWithValueType(testDict3, EValueType.Five), 1);
             Assert.AreEqual(CountDictionaryRegistriesWithValueType(testDict3, EValueType.Two), 4);
-            Assert.AreEqual(CountDictionaryRegistriesWithValueType(testDict3, EValueType.Three), 2);
+            Assert.AreEqual(CountDictionaryRegistriesWithValueType(testDict3, EValueType.Three), 3);
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace TestProject1
         [Test]
         public void TestClassifyTickets()
         {
-            //PopulateTicketCollections();
+            PopulateTicketCollections();
 
             Queue<Ticket>[] resultQueues = { resultPaymentQueue, resultSubscriptionQueue, resultCancellationQueue };
 

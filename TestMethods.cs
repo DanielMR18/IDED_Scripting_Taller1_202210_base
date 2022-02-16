@@ -38,7 +38,7 @@ namespace TestProject1
 
             result = new Stack<int>(temp);
 
-            Stack<int> result = null;
+            return result;
         }
 
         internal static Dictionary<int, EValueType> FillDictionaryFromSource(int[] sourceArr)
@@ -96,7 +96,7 @@ namespace TestProject1
 
         internal static Dictionary<int, EValueType> SortDictionaryRegistries(Dictionary<int, EValueType> sourceDict)
         {
-            Dictionary<int, EValueType> result = null;
+            Dictionary<int, EValueType> result = new Dictionary<int, EValueType>();
 
             if (sourceDict.Count > 0)
             {

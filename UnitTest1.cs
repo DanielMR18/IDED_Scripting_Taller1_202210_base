@@ -183,9 +183,9 @@ namespace TestProject1
         [SetUp]
         public void PopulateTicketCollections()
         {
-            resultPaymentQueue = TestUtils.Populate(resultPaymentTicketElements);
-            resultSubscriptionQueue = TestUtils.Populate(resultSubscriptionTicketElements);
-            resultCancellationQueue = TestUtils.Populate(resultCancellationTicketElements);
+            TestUtils.Populate(ref resultPaymentQueue, resultPaymentTicketElements);
+            TestUtils.Populate(ref resultSubscriptionQueue, resultSubscriptionTicketElements);
+            TestUtils.Populate(ref resultCancellationQueue, resultCancellationTicketElements);
         }
 
         [TearDown]

@@ -31,16 +31,17 @@ namespace TestProject1
             }
         }
 
-        internal static Queue<T> Populate<T>(T[] elements)
+        internal static void Populate<T>(ref Queue<T> queue, T[] elements)
         {
-            Queue<T> result = new Queue<T>();
+            if (queue == null)
+            {
+                queue = new Queue<T>();
+            }
 
             for (int i = 0; i < elements.Length; i++)
             {
-                result.Enqueue(elements[i]);
+                queue.Enqueue(elements[i]);
             }
-
-            return result;
         }
 
         internal static void InitializeQueueCollection<T>(this Queue<T>[] collection, int lenght)

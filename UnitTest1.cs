@@ -205,9 +205,13 @@ namespace TestProject1
         {
             PopulateTestNGVStacks();
 
-            Assert.IsTrue(testStackResultA.HasSameElementsAtIndeces(GetNextGreaterValue(testStackA)));
-            Assert.IsTrue(testStackResultB.HasSameElementsAtIndeces(GetNextGreaterValue(testStackB)));
-            Assert.IsTrue(testSortedStackResult.HasSameElementsAtIndeces(GetNextGreaterValue(testSortedStack)));
+            Stack<int> resultA = GetNextGreaterValue(testStackA);
+            Stack<int> resultB = GetNextGreaterValue(testStackB);
+            Stack<int> resultSorted = GetNextGreaterValue(testSortedStack);
+
+            Assert.IsTrue(testStackResultA.HasSameElementsAtIndeces(resultA));
+            Assert.IsTrue(testStackResultB.HasSameElementsAtIndeces(resultB));
+            Assert.IsTrue(testSortedStackResult.HasSameElementsAtIndeces(resultSorted));
 
             Assert.AreEqual(-1, GetNextGreaterValue(testStackA).Peek());
             Assert.AreEqual(-1, GetNextGreaterValue(testStackB).Peek());
@@ -348,11 +352,17 @@ namespace TestProject1
 
         private void PopulateTestNGVStacks()
         {
-            testStackA.Populate(testStackElementsA);
-            testStackResultA.Populate(testStackResultElementsA);
-            testStackB.Populate(testStackElementsB);
-            testStackResultA.Populate(testStackResultElementsB);
-            testSortedStackResult.Populate(testSortedStackResultElements);
+            TestUtils.Populate(ref testStackA, testStackElementsA);
+            TestUtils.Populate(ref testStackResultA, testStackResultElementsA);
+            TestUtils.Populate(ref testStackB, testStackElementsB);
+            TestUtils.Populate(ref testStackResultB, testStackResultElementsB);
+            TestUtils.Populate(ref testSortedStack, testSortedStackElements);
+            TestUtils.Populate(ref testSortedStackResult, testSortedStackResultElements);
+
+            //testStackResultA.Populate(testStackResultElementsA);
+            //testStackB.Populate(testStackElementsB);
+            //testStackResultA.Populate(testStackResultElementsB);
+            //testSortedStackResult.Populate(testSortedStackResultElements);
         }
 
         private void FillTestDictionaries()

@@ -5,7 +5,7 @@ namespace TestProject1
 {
     internal static class TestUtils
     {
-        internal static void Populate<T>(this Stack<T> stack, T[] elements)
+        internal static void Populate<T>(ref Stack<T> stack, T[] elements)
         {
             if (stack == null)
             {

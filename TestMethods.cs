@@ -32,13 +32,13 @@ namespace TestProject1
 
                 if (currentElement > lastElement)
                 {
-                    lastElement = currentElement; 
+                    lastElement = currentElement;
                 }
             }
 
             result = new Stack<int>(temp);
 
-            return result;
+            Stack<int> result = null;
         }
 
         internal static Dictionary<int, EValueType> FillDictionaryFromSource(int[] sourceArr)
@@ -96,7 +96,7 @@ namespace TestProject1
 
         internal static Dictionary<int, EValueType> SortDictionaryRegistries(Dictionary<int, EValueType> sourceDict)
         {
-            Dictionary<int, EValueType> result = new Dictionary<int, EValueType>();
+            Dictionary<int, EValueType> result = null;
 
             if (sourceDict.Count > 0)
             {

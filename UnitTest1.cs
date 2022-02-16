@@ -180,7 +180,6 @@ namespace TestProject1
 
         #endregion ServiceCenterStructures
 
-        [SetUp]
         public void PopulateTicketCollections()
         {
             TestUtils.Populate(ref resultPaymentQueue, resultPaymentTicketElements);
@@ -223,9 +222,7 @@ namespace TestProject1
         [Test]
         public void TestFillDictionaryFromSource()
         {
-            testDict1 = FillDictionaryFromSource(testDict1Elements);
-            testDict2 = FillDictionaryFromSource(testDict2Elements);
-            testDict3 = FillDictionaryFromSource(testDict3Elements);
+            FillTestDictionaries();
 
             // Tests dictionaries are filled as expected.
             Assert.IsTrue(testDict1.HasSameElementsAtIndeces(resultDict1));
@@ -358,11 +355,6 @@ namespace TestProject1
             TestUtils.Populate(ref testStackResultB, testStackResultElementsB);
             TestUtils.Populate(ref testSortedStack, testSortedStackElements);
             TestUtils.Populate(ref testSortedStackResult, testSortedStackResultElements);
-
-            //testStackResultA.Populate(testStackResultElementsA);
-            //testStackB.Populate(testStackElementsB);
-            //testStackResultA.Populate(testStackResultElementsB);
-            //testSortedStackResult.Populate(testSortedStackResultElements);
         }
 
         private void FillTestDictionaries()
